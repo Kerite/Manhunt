@@ -1,0 +1,9 @@
+name: ManHunt
+main: top.kerite.manhunt.ManHunt
+version: 1
+author: Kerite
+api-version: "1.16"
+commands:
+  manhunt:
+    description: Manhunt plugin
+    usage: /<command> <join|start|compass|reload> [hunter|runner]
