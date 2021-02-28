@@ -307,8 +307,8 @@ public class ManHuntMatch implements IManhuntMatch {
     }
 
     void updateConfig() {
-        this.glowDistance = plugin.getConfig().getInt(ManhuntCommand.CONFIG_GLOW_DISTANCE, 15);
-        this.prepareTime = plugin.getConfig().getInt(ManhuntCommand.CONFIG_PREPARE_TIME, 30);
+        this.glowDistance = plugin.getConfig().getInt(ManhuntConfig.CONFIG_GLOW_DISTANCE, 15);
+        this.prepareTime = plugin.getConfig().getInt(ManhuntConfig.CONFIG_RUNNER_START_TIME, 30);
     }
 
     @Override

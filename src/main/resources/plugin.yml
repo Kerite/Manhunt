@@ -1,6 +1,6 @@
 name: ManHunt
 main: top.kerite.manhunt.ManHunt
-version: 1
+version: @version@
 author: Kerite
 api-version: "1.16"
 commands:

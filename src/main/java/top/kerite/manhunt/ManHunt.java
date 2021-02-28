@@ -3,11 +3,8 @@ package top.kerite.manhunt;
 import net.milkbowl.vault.permission.Permission;
 import org.bukkit.command.PluginCommand;
 import org.bukkit.configuration.file.FileConfiguration;
-import org.bukkit.configuration.file.YamlConfiguration;
 import org.bukkit.plugin.RegisteredServiceProvider;
 import org.bukkit.plugin.java.JavaPlugin;
-import org.bukkit.scoreboard.Scoreboard;
-import org.jetbrains.annotations.NotNull;
 
 import java.util.logging.Logger;
 
@@ -16,7 +13,6 @@ import static top.kerite.manhunt.I18n.tl;
 public class ManHunt extends JavaPlugin implements IManhunt {
     private static final Logger LOGGER = Logger.getLogger("Manhunt");
     private static ManHunt INSTANCE;
-    private static Scoreboard sb;
     private static Permission perms = null;
     private I18n i18n;
     private IManhuntMatch match;
@@ -61,7 +57,7 @@ public class ManHunt extends JavaPlugin implements IManhunt {
     @Override
     public void reload() {
         reloadConfig();
-        i18n.updateLocale(getConfig().getString("locale"));
+        i18n.updateLocale(getConfig().getString(ManhuntConfig.CONFIG_LOCALE));
         match.reload();
     }
 

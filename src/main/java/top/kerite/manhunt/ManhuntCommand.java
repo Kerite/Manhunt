@@ -10,12 +10,14 @@ import org.bukkit.command.TabExecutor;
 import org.bukkit.entity.Player;
 import org.bukkit.inventory.ItemStack;
 import org.bukkit.inventory.meta.ItemMeta;
-import org.bukkit.plugin.Plugin;
 import org.bukkit.util.StringUtil;
 import org.jetbrains.annotations.NotNull;
 import top.kerite.manhunt.manhuntexception.InvalidRoleException;
 
-import java.util.*;
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.List;
+import java.util.Locale;
 import java.util.logging.Logger;
 
 import static top.kerite.manhunt.I18n.tl;
@@ -26,10 +28,7 @@ public class ManhuntCommand implements TabExecutor {
     public static final String PERMISSION_START = "manhunt.start";
     public static final String PERMISSION_RELOAD = "manhunt.reload";
     public static final String PERMISSION_CONFIG = "manhunt.config";
-    public static final String CONFIG_GLOW_DISTANCE = "glow-distance";
-    public static final String CONFIG_PREPARE_TIME = "prepare-time";
     private static final List<String> COMMANDS = Arrays.asList("join", "start", "reload", "list", "verbose", "config");
-    private static final List<String> CONFIGS = Arrays.asList(CONFIG_GLOW_DISTANCE, CONFIG_PREPARE_TIME);
     private static final List<String> ROLES = Arrays.asList(PlayerRole.RUNNER.getName(), PlayerRole.HUNTER.getName());
     private final Permission perms;
     private final Logger LOGGER;
@@ -128,9 +127,9 @@ public class ManhuntCommand implements TabExecutor {
 
     private boolean checkConfigAvailable(CommandSender sender, String arg) {
         if (arg.equalsIgnoreCase("list")) {
-            sender.sendMessage(CONFIGS.toString());
+            sender.sendMessage(ManhuntConfig.getConfigList().toString());
             return true;
-        } else if (CONFIGS.contains(arg)) {
+        } else if (ManhuntConfig.getConfigList().contains(arg)) {
             return true;
         }
         sender.sendMessage(tl("errorConfigItemMissing"));
@@ -139,7 +138,7 @@ public class ManhuntCommand implements TabExecutor {
 
     private boolean join(CommandSender sender, String[] args) throws InvalidRoleException {
         if (args.length != 2 && args.length != 3) {
-            sender.sendMessage("Invalid arguments.usage : /manhunt join <hunter|runner> [player]");
+            sender.sendMessage("Invalid arguments.usage: /manhunt join <hunter|runner> [player]");
             return false;
         }
         if (!perms.has((Player) sender, PERMISSION_JOIN)) {
