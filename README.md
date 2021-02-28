@@ -1,4 +1,4 @@
-###Commands
+### Commands
 
 | command | description | permission |
 | :------ | :---------- | :--------- |
